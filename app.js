@@ -15,24 +15,40 @@ const getRandomSuperHero = (id,name)=> {
          getStatsHTML(json)
          const name = `<h2>${json.name}</h2>`
          const powerstats = `
-         <p>🧠İntelligence: ${json.powerstats.intelligence}</p>
-         <p>👊combat: ${json.powerstats.combat}</p>
-         <p>🛡️durability: ${json.powerstats.durability}</p>
-         <p>💥power: ${json.powerstats.power}</p>
-         <p>🚤speed: ${json.powerstats.speed}</p>
+         <p>🧠 Intelligence: ${json.powerstats.intelligence}</p>
+         <p>👊 combat: ${json.powerstats.combat}</p>
+         <p>🛡️ durability: ${json.powerstats.durability}</p>
+         <p>💥 power: ${json.powerstats.power}</p>
+         <p>🚤 speed: ${json.powerstats.speed}</p>
          <p>💪strength: ${json.powerstats.strength}</p>
          `
-         heroImageDiv.innerHTML += ` ${name}<img src ="${json.image.url}"> ${powerstats}`
+         heroImageDiv.innerHTML += ` 
+         <h2> ${name} </h2> 
+         <img src ="${json.image.url}"> 
+         <div class='heroSkills'${powerstats.toUpperCase()}`
 
         //  document.querySelector('body').innerHTML += `<img src ="${json.image.url}">` both of two works
         })
 }
 
+const statToEmoji = {
+       intelligence: '🧠',
+       combat:   '👊',
+       durability: '🛡️',
+       power: '💥',
+       speed: '🚤',
+       strength: '💪',
+}
+
 const getStatsHTML = (character)  =>{
-    console.log(Object.keys(character.powerstats)) // returning array 
-    for (stat in character.powerstats){
-        console.log(stat)
-    }
+    // console.log(Object.keys(character.powerstats)) // returning array 
+    const stats = Object.keys(character.powerstats).map(stat => { 
+        return `<p> ${statToEmoji[stat]} ${stat.toUpperCase()}: ${character.powerstats[stat]}</p>`
+    })
+    console.log(stats)
+    // for (stat in character.powerstats){
+    //     console.log(stat)
+    // }
 }
 //name 👉 base_url/search/batman
     // id : 👉base_url/id
@@ -74,7 +90,7 @@ searcBtn.addEventListener('click',(e)=>{
 console.log(Math.floor(Math.random()*732)+1) // get the hero randomly.
 
 
-// 07:08:30
+// 07:24:29
 
 
 
